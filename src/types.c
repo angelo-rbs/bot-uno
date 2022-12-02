@@ -1,13 +1,15 @@
 
-typedef struct Suit {
+//typedef struct Suit {
 
-  char suitName;
-}
+//  char suitName[3]; // eu dei um strlen nos naipes e todos tem 3 de tamanho
+//} 
 
-typedef struct Card {
+// eu achei melhor nao usar o struct Suit, oq tu acha?
 
-  char num;
-  Suit suit; // naipe
+typedef struct {
+
+  char num[2]; // a gnt pode receber a carta  de valor 10, ai precisa de 2 espaços
+  char *suit; // naipe
 
 } Card;
 
