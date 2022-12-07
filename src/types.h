@@ -5,10 +5,14 @@
 //} 
 
 // eu achei melhor nao usar o struct Suit, oq tu acha?
+// acho justo, lindo
+
+#ifndef TYPES
+#define TYPES
 
 typedef struct {
 
-  char num[2]; // a gnt pode receber a carta  de valor 10, ai precisa de 2 espaços
+  char num[5]; // a gnt pode receber a carta  de valor 10, ai precisa de 2 espaços
   char *suit; // naipe
 
 } Card;
@@ -26,3 +30,5 @@ typedef struct Pile {
   Card *pileCards;
 
 } Pile;
+
+#endif
