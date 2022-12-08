@@ -26,9 +26,10 @@ void printaMao(Hand hand) {
 
 void insertCardOnHand(Card card, Hand *hand) {
 
+  (*hand).handCards = realloc( (*hand).handCards, sizeof(Card) * ((*hand).howManyCards + 1)); // realoca deixando 1 lugar vago
   (*hand).handCards[ (*hand).howManyCards ] = card; // coloca a nova carta na mao
   (*hand).howManyCards += 1; // aumenta a quantidade de cartas
-  (*hand).handCards = realloc( (*hand).handCards, sizeof(Card) * ((*hand).howManyCards + 1)); // realoca deixando 1 lugar vago
+  
 }
 
 // *******************************************************
@@ -60,17 +61,15 @@ Hand* readHand(char string[MAX_LINE]) {
    char *token;
 
    Hand *hand;
-   hand = malloc( sizeof(Hand) );
-   hand->handCards = malloc( sizeof(Card) );
+   hand = calloc( 1,  sizeof(Hand) );
+   hand->handCards = calloc( 1, sizeof(Card) );
    hand->howManyCards = 0;
-   
-   /* get the first token */
+
    token = strtok(string, s);
    
-   /* walk through other tokens */
    while( token != NULL ) {
       Card card;
-      card.suit = malloc( 10 * sizeof(char));
+      card.suit = calloc( 10, sizeof(char) );
 
       int tokenLen = strlen(token);
       int ehNum10 = 0;
@@ -93,10 +92,11 @@ Hand* readHand(char string[MAX_LINE]) {
           suit[i] = token[1 + i + ehNum10];
 
         strcat(card.suit, suit);
+        printf("dentro: suit(%s) num(%s)", card.suit, card.num);
 
         insertCardOnHand(card, hand);
       }
-      
+      printf("\n\n");
       token = strtok(NULL, s);
    }
 
@@ -112,7 +112,7 @@ void readTable() {
 
 int main() {
 
-  char str[MAX_LINE] = "[ 1♥ 7♥ 10♣ J♠ A♥ 3♦ 2♣ 9♠ ]";
+  char str[MAX_LINE] = "[ 7♥ 1♣ 10♥ J♠ A♥ 3♦ 2♣ 9♠ ]";
   /*
   ♥ eh 14850469.
   ♦ eh 14850470.
