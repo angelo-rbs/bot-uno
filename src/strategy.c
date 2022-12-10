@@ -46,7 +46,6 @@ Card getBestDiscard(Card card, Hand hand) {
     }
   }
   strcpy(aux.num, "12"); // CASO NAO ENCONTRE CARTA NA MAO, DEVOLVE UMA CARTA COM VALOR INVÁLIDO
-  printf("NÃO TEM DESCARTE :(\n");
   return aux;
 }
 
