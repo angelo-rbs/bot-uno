@@ -15,7 +15,7 @@ typedef struct {
 
 typedef struct Hand {
 
-  int howManyCards;
+  int *howManyCards;
   Card *handCards;
 
 } Hand;
