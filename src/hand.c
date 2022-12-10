@@ -7,13 +7,11 @@ void sort(Hand hand) {
 
 }
 
-Card createCard() {
-  char input[10];
+Card createCard(char *input) {
   Card auxCard;
 
   auxCard.suit = calloc(3, sizeof(char));
 
-  scanf(" %[^\n]", input);
   if (input[1] == '0') { // verifica se recebeu uma carta com valor 10
     strcpy(auxCard.num, "10");
     for (int j=2; j<5; j++) {
@@ -67,7 +65,7 @@ void buy(int quant, Hand *hand) {
 
   printf("BUY %d\n", quant);
   for (int i=0; i<quant; i++) {
-    auxCard = recebeCarta();
+    auxCard = createCard();
     insertCardOnHand(auxCard, hand); // bota na mão
   }
 }
