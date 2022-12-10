@@ -20,8 +20,8 @@ void printaCarta(Card card) {
 
 void printaMao(Hand hand) {
 
-  for (int i = 0; i < hand.howManyCards; i++)
-    printf("a %dª carta eh %s %c.\n", i+1, hand.handCards[i].num, hand.handCards[i].suit);
+  for (int i = 0; i <hand.howManyCards; i++)
+    printf("a %dª carta eh %s %s.\n", i+1, hand.handCards[i].num, hand.handCards[i].suit);
 }
 
 void insertCardOnHand(Card card, Hand *hand) {
@@ -105,10 +105,7 @@ Hand* readHand(char string[MAX_LINE]) {
 
 void readTable() {
   
-  
 }
-
-
 
 int main() {
 

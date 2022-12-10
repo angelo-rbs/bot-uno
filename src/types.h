@@ -1,12 +1,3 @@
-
-//typedef struct Suit {
-
-//  char suitName[3]; // eu dei um strlen nos naipes e todos tem 3 de tamanho
-//} 
-
-// eu achei melhor nao usar o struct Suit, oq tu acha?
-// acho justo, lindo
-
 #ifndef TYPES
 #define TYPES
 
@@ -19,7 +10,7 @@ typedef struct {
 
 typedef struct Hand {
 
-  int *howManyCards;
+  int howManyCards;
   Card *handCards;
 
 } Hand;
