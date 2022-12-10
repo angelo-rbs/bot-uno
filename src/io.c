@@ -35,7 +35,7 @@ void insertCardOnHand(Card card, Hand *hand) {
 // *******************************************************
 
 
-void readPlayers(char string[MAX_LINE], int *playersIdList, int *idListSize) {
+int *readPlayers(char string[MAX_LINE], int *playersIdList, int *idListSize) {
 
    const char s[2] = " ";
    char *token;
@@ -49,6 +49,8 @@ void readPlayers(char string[MAX_LINE], int *playersIdList, int *idListSize) {
       token = strtok(NULL, s);
       ++(*idListSize);
    }
+
+   return *playersIdList;
 }
 
 // "[ 4♥ 7♦ 2♣ J♠ A♥ 3♦ 2♣ 9♠ ]"
