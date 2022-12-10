@@ -46,6 +46,9 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "io.h"
+#include "strategy.h"
+#include "types.h"
 
 /** Constantes para as strings a serem lidas */
 #define MAX_LINE 100
@@ -68,6 +71,10 @@ int main() {
   // Então, cabe a você usar as variáveis adequadas em função do que está lendo.
   char temp[MAX_LINE];   // string para leitura temporária de dados
   char my_id[MAX_ID_SIZE];  // identificador do seu bot
+  
+  Hand *hand;
+  Pile *pile;
+  int *players;
 
   setbuf(stdin, NULL);   // stdin, stdout e stderr não terão buffers
   setbuf(stdout, NULL);  // assim, nada é "guardado temporariamente"
@@ -96,6 +103,7 @@ int main() {
   // Será necessário separar os identificadores para saber quem são, quantos bots estão
   // jogando e qual a ordem inicial de jogada deles.
   scanf("PLAYERS %[^\n]\n", temp);
+  int *players = playersIdList(temp);
 
   // Caso queira imprimir uma mensagem para debugar, pode chamar 'debug()' passando uma string.
   // Por exemplo: debug(temp);
@@ -109,9 +117,11 @@ int main() {
   // mais de um byte para armazená-los. Assim, é interesante guardá-los como strings.
   // Obs: lembre-se de tratar os colchetes.
   scanf("HAND %[^\n]\n", temp);
+  Hand *hand = readHand(temp);
 
   // Lê a carta aberta sobre a mesa. Ex: TABLE 8♣
   scanf("TABLE %s\n", temp);
+  Card *card = buy();
 
 
   // === PARTIDA ===
