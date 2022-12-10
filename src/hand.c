@@ -1,8 +1,9 @@
-// include types
+#include "types.h"
 #include <string.h>
 #include <stdlib.h>
+#include "strategy.h"
 
-void shuffle(Hand hand) {
+void sort(Hand hand) {
 
 }
 
@@ -28,35 +29,37 @@ Card createCard() {
     return auxCard;
 }
 
-void discard(Card card, Hand hand) {
+Card *discard(Card card, Hand hand) {
   Card aux;
   int indiceAux;
   aux = getBestDiscard(card, hand);
 
   if (!strcmp(aux.num, "12")) {
-    buy(1, hand); // se não tiver carta p descartar, chama a funcao de compra ## >>NÃO SEI SE FUNCIONARIA :(<<
-    return;
+    hand.handCards = buy(1, hand); // se não tiver carta p descartar, chama a funcao de compra ## >>NÃO SEI SE FUNCIONARIA :(<<
+    return hand.handCards;
   }
   for (int i=0; i<(*(hand.howManyCards)); i++) { 
     if (!strcmp(hand.handCards[i].suit, aux.suit) && !strcmp(hand.handCards[i].num, aux.num)) { // procura a carta descartada
       indiceAux = i;
       break;
+    }
   }
   
-  strcpy(hand.handCards[indiceAux].num, hand.handCards[hand.howManyCards-1].num);
-  strcpy(hand.handCards[indiceAux].suit, hand.handCards[hand.howManyCards-1].suit);
+  strcpy(hand.handCards[indiceAux].num, hand.handCards[(*(hand.howManyCards))-1].num);
+  strcpy(hand.handCards[indiceAux].suit, hand.handCards[(*(hand.howManyCards))-1].suit);
 
-  hand.handCards[hand.howManyCards-1].num[0] = '\0';
-  hand.handCards[hand.howManyCards-1].suit[0] = '\0';
-  *(hand.howManyCards) +- 1;
-  hand.handCards = realloc(hand.handCards, sizeof(Card)*(*(hand.howManyCards)+1));
-  }
+  hand.handCards[(*(hand.howManyCards))-1].num[0] = '\0';
+  hand.handCards[(*(hand.howManyCards))-1].suit[0] = '\0';
+  *(hand.howManyCards) -= 1;
+  hand.handCards = realloc(hand.handCards, sizeof(Card)*((*(hand.howManyCards))+1));
+  return hand.handCards;
 }
 
-void insertCardOnHand(Card card, Hand hand) {
+Card *insertCardOnHand(Card card, Hand hand) {
   hand.handCards[*(hand.howManyCards)] = card; // coloca a nova carta na mao
-  *(hand.howManyCards) += 1; // aumenta a quantidade de cartas
+  *(hand.howManyCards) += 1;
   hand.handCards = realloc(hand.handCards, sizeof(Card)*(*(hand.howManyCards)+1)); // realoca deixando 1 lugar vago
+  return hand.handCards;
 }
 
 Card *buy(int quant, Hand hand) {
