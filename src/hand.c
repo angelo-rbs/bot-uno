@@ -7,11 +7,13 @@ void sort(Hand hand) {
 
 }
 
-Card createCard(char *input) {
+Card createCard() {
+  char input[10];
   Card auxCard;
 
   auxCard.suit = calloc(3, sizeof(char));
 
+  scanf(" %[^\n]", input);
   if (input[1] == '0') { // verifica se recebeu uma carta com valor 10
     strcpy(auxCard.num, "10");
     for (int j=2; j<5; j++) {
