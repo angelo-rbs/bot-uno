@@ -1,13 +1,18 @@
 
-#include "types.h"
-#include <string.h>
+#include <stdio.h>
+#include "definitions.h"
 
-void printaCarta(Card card) {
-  printf("num: %s; suit: %s;\n", card.num, card.suit);
+// ---------------------------- TESTE ----------------------------
+
+void debug(char *message) {
+  fprintf(stderr, "%s\n", message);
 }
 
-void printaMao(Hand hand) {
-
-  for (int i = 0; i < hand.howManyCards; i++)
-    printf("a %dª carta eh %s %c.\n", i+1, hand.handCards[i].num, hand.handCards[i].suit);
+void debugaMao(Hand mao) {
+  debug("---- Sua mao ----");
+  for (int i=0; i<(mao.howManyCards); i++) {
+    debug(mao.handCards[i].num);
+    debug(mao.handCards[i].suit);
+  }
+  debug("---- x ----");
 }
