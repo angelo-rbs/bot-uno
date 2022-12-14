@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "hand.h"
 #include "definitions.h"
@@ -51,3 +52,6 @@ Hand* readHand(char string[MAX_LINE]) {
 
    return hand;
 }
+
+
+
